@@ -1,31 +1,38 @@
-import  React from 'react';
-import "./CheckoutProduct.css";
+import React from 'react';
+import './CheckoutProduct.css';
+import { useStateValue } from './StateProvider';
 
-function CheckoutProduct() {
-    return(
-        
-            <div className="checkoutProduct">
-             <img src="/Images/bag.avif" alt="Ecommerce banner" className="checkoutProduct__image" />
+function CheckoutProduct({ id, image, title, price, rating }) {
+    const [{ basket }, dispatch] = useStateValue();
 
-             <div className="checkoutProduct__info">
-                <p className="checkoutProduct__title">
-                    FUR JADEN Pro Series Smart Tech Anti-Theft Laptop Backpack With 
-                        USB-A and USB-C Type Charging Port for Men & Women For Business 
-                        Professionals & College Students
-                </p>
+    const removeFromBasket = () => {
+        dispatch({
+            type: 'REMOVE_FROM_BASKET',
+            id: id,
+        });
+    };
+
+    return (
+        <div className="checkoutProduct">
+            <img src={image} alt="Ecommerce banner" className="checkoutProduct__image" />
+
+            <div className="checkoutProduct__info">
+                <p className="checkoutProduct__title">{title}</p>
                 <p className="checkoutProduct__price">
                     <small>$</small>
-                    <strong>20</strong>
-
+                    <strong>{price}</strong>
                 </p>
                 <div className="checkoutProduct__rating">
-                    ⭐⭐⭐⭐
+                    {Array(rating)
+                        .fill()
+                        .map((_, i) => (
+                            <p key={i}>⭐</p>
+                        ))}
                 </div>
-                <button>Remove from Basket</button>
-             </div>
+                <button onClick={removeFromBasket}>Remove from Basket</button>
             </div>
-        
-    )
+        </div>
+    );
 }
 
 export default CheckoutProduct;
