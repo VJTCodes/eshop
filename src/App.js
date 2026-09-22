@@ -12,7 +12,7 @@ function App() {
   return (
     <StateProvider initialState={initialState} reducer={reducer}>
       <div className='App'>
-        <Router>
+        <Router basename={process.env.PUBLIC_URL}>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/checkout" element={<><Header /><Checkout /></>} />

@@ -1,21 +1,25 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./Product.css";
-import { useStateValue} from "./StateProvider";
+import { useStateValue } from "./StateProvider";
 
-function Product({id,title,image,price,rating}) {
-//dispatch is alternative name for action. JS obj that has type feature
-    const[state, dispatch] = useStateValue();
+function Product({ id, title, image, price, rating }) {
+    const [, dispatch] = useStateValue();
+    const navigate = useNavigate();
 
-    const addToBasket = ()=>{
+    const addToBasket = () => {
         dispatch({
             type: "ADD_TO_BASKET",
             item: {
-                id:id,
+                id: id,
+                title: title,
                 image: image,
                 price: price,
-                rating: rating
+                rating: rating,
             },
         });
+
+        navigate("/checkout");
     };
 
     return (
@@ -31,11 +35,11 @@ function Product({id,title,image,price,rating}) {
                         {Array(rating)
                         .fill()
                         .map((_,i)=>(
-                            <p>⭐</p>
+                            <p key={i}>⭐</p>
                         ))}
                     </div>
                 </div>
-                <img src={image} alt="Image of a bag" />
+                <img src={image} alt={title} />
 
                 <button onClick={addToBasket}> Add to Basket</button>
             </div>

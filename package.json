@@ -2,6 +2,7 @@
   "name": "eshop",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://vjtcodes.github.io/eshop",
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
@@ -13,9 +14,7 @@
     "@testing-library/user-event": "^13.5.0",
     "firebase": "^8.10.0",
     "react": "^18.3.1",
-    "react-currency-format": "^1.1.0",   
-     "homepage": "https://vjtcodes.github.io/eshop",
-    
+    "react-currency-format": "^1.1.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
     "react-scripts": "5.0.1",
